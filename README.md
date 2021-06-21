@@ -1,7 +1,7 @@
 # Elastic_essencial_bacic
 Some basic commands on Elastic, CRUD operations, Index API, Search API, Queries and Filters, Analyzer and Aggregations. All information is provided by Semantix Academy.
 
--Add document in Index produto. Here we are creating an index for use in this practice, and we will use four documents with id from 1 to 4. We use ```POST``` method as shown bellow. The syntax is ```POST <target>/_doc/<id>
+-Add document in Index produto. Here we are creating an index for use in this practice, and we will use four documents with id from 1 to 4. We use ```POST``` method as shown bellow. The syntax is ```POST <target>/_doc/<id> ```
 
 ```
 POST produto/_doc/1
