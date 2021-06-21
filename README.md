@@ -3,7 +3,8 @@ Some basic commands on Elastic, CRUD operations, Index API, Search API, Queries 
 
 -Add document in Index produto. Here we are creating an index for use in this practice, and we will use four documents numbered 1 to 4. We use ```POST``` method as shown bellow. 
 
-```POST produto/_doc/1
+```
+POST produto/_doc/1
 {
   "nome": "mouse",
   "qtd": 50,
@@ -21,9 +22,10 @@ POST produto/_doc/3
    "qtd": 10, 
    "descricao": "8GB, DDR4"
 }
-POST produto/_doc/3
+POST produto/_doc/4
 {
-   "nome": "memória ram", 
-   "qtd": 10, 
-   "descricao": "8GB, DDR4"
-}```
+  "nome": "cpu",
+  "qtd": 15,
+  "descricao": "i5, 2.5Ghz"
+}
+```
