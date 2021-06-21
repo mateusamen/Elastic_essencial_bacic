@@ -48,6 +48,8 @@ POST produto/_update/3
 -Now we will do some queries:
 First query will be search a document with attibute ```"nome":"mouse"```. The query will be the following:
 ```GET produto/_search?q=nome:mouse```
+
 The output:
+
 ![output1](https://user-images.githubusercontent.com/62483710/122823153-64fabe80-d2b5-11eb-8279-900e254358d0.PNG)
 
