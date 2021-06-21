@@ -29,7 +29,8 @@ POST produto/_doc/4
   "descricao": "i5, 2.5Ghz"
 }
 ```
--Now we want to verify the document with id=3. We do it using ```GET``` method, as shown here: ```GET produto/_source/3```. The output is:
+-Now we want to verify the document with id=3. We do it using ```GET``` method, as shown here: ```GET produto/_source/3```.
+The output is:
 ![output01](https://user-images.githubusercontent.com/62483710/122819982-7e017080-d2b1-11eb-840d-a6119f74d50d.PNG)
 
 -Now we want to update the attribute qtd=30 for document with id=3. We use: 
