@@ -1,7 +1,10 @@
 # Elastic_essencial_bacic
 Some basic commands on Elastic, CRUD operations, Index API, Search API, Queries and Filters, Analyzer and Aggregations. All information is provided by Semantix Academy.
 
--Add document in Index produto. Here we are creating an index for use in this practice, and we will use four documents with id from 1 to 4. We use ```POST``` method as shown bellow. The syntax is ```POST <target>/_doc/<id> ```
+
+## CRUD perations
+
+-Add document in Index produto. Here we are CREATING an index for use in this practice, and we will use four documents with id from 1 to 4. We use ```POST``` method as shown bellow. The syntax is ```POST <target>/_doc/<id> ```
 
 ```
 POST produto/_doc/1
@@ -29,7 +32,7 @@ POST produto/_doc/4
   "descricao": "i5, 2.5Ghz"
 }
 ```
--Now we want to verify the document with id=3. We do it using ```GET``` method, as shown here: ```GET produto/_source/3```.
+-Now we want to READ the document with id=3. We do it using ```GET``` method, as shown here: ```GET produto/_source/3```.
 The output is:
 ![output01](https://user-images.githubusercontent.com/62483710/122819982-7e017080-d2b1-11eb-840d-a6119f74d50d.PNG)
 
@@ -53,3 +56,13 @@ The output:
 
 ![output1](https://user-images.githubusercontent.com/62483710/122823153-64fabe80-d2b5-11eb-8279-900e254358d0.PNG)
 
+To UPDATE the index produto by inserting a field data of type date:
+
+```
+PUT produto/_mapping
+{
+  "properties":{
+    "data":{"type":"date"}
+  }
+}
+```
