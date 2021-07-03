@@ -66,3 +66,89 @@ PUT produto/_mapping
   }
 }
 ```
+To read information from index produto, document with id=6
+
+```GET produto/_source/6```
+
+output:
+
+![readme_1_source](https://user-images.githubusercontent.com/62483710/124340203-e7bf2b80-db89-11eb-9faf-b5a4bdaa0718.PNG)
+
+---
+### Reindex
+
+Change data type of attribute "qtd", from Long to Short. This will be done with 5 steps:
+ 1- Get mapping from original index:
+ 
+ ```GET produto/_mapping```
+ 
+ 2- from the output, get properties and copy the information
+ 
+ 3- Create new Index:
+ 
+ ```GET produto/_mapping```
+ 
+ 4- Define mapping of nex index and paste properties from original index, changing data type os "qtd" to Short
+ 
+ ```PUT produto2/_mapping
+{
+  "properties": {
+    "data": {
+      "type": "date"
+    },
+    "descricao": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "nome": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "properties": {
+      "properties": {
+        "data": {
+          "properties": {
+            "type": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "qtd": {
+      "type": "short"
+    }
+  }
+}
+```
+
+ 5- Reindex:
+ 
+ ```
+ POST _reindex
+{
+  "source":{
+    "index": "produto"
+  }
+  , "dest": {
+    "index": "produto2"
+  }
+}
+```
+---
