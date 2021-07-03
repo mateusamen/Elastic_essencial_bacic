@@ -78,6 +78,7 @@ output:
 ### Reindex
 
 Change data type of attribute "qtd", from Long to Short. This will be done with 5 steps:
+
  1- Get mapping from original index:
  
  ```GET produto/_mapping```
