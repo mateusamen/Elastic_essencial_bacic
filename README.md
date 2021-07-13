@@ -89,7 +89,7 @@ Change data type of attribute "qtd", from Long to Short. This will be done with 
  
  ```GET produto/_mapping```
  
- 4- Define mapping of nex index and paste properties from original index, changing data type os "qtd" to Short
+ 4- Define mapping of nex index and paste properties from original index, changing data type from "qtd" to Short
  
  ```PUT produto2/_mapping
 {
@@ -153,3 +153,196 @@ Change data type of attribute "qtd", from Long to Short. This will be done with 
 }
 ```
 ---
+
+## Query and Filters
+
+Search in index produto for *mouse* or *teclado*:
+
+```
+GET produto/_search
+{
+  "query": {
+    "terms": {
+      "nome": ["mouse","teclado"]
+    }
+  }
+}
+```
+
+Search in index produto for *mouse* or *teclado* with constant score
+
+```
+GET produto/_search
+{
+  "query":{
+    "constant_score": {
+      "filter": {
+        "terms": {
+          "nome": [
+            "mouse",
+            "teclado"
+          ]
+        }
+      },
+      "boost": 1.2
+    }
+  }
+}
+```
+
+Search for document that had field = "usb":
+
+```
+GET produto/_search
+{
+  "query": {
+    "match": {
+      "descricao": "USB"
+    }
+  }
+}
+```
+
+---
+### Bool Query
+
+Search for documents that has word "USB" and don't have the word "LINUX"
+
+```
+GET produto/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {"descricao":"usb"}
+        }
+      ],
+      "must_not": [
+        {
+          "match": {"descricao":"linux"}
+        }
+      ]
+    }
+  }
+}
+```
+
+Search documents that hads word *"memoria"* in atributte *nome* or has the word *"USB"* and don't have the word *"LINUX"* in attribute *"descricao"*
+
+```
+GET produto/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "nome": "memoria"
+          }
+        },
+        {
+          "match": {
+            "descricao": "usb"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "match": {
+            "descricao": "linux"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+Search for documents that has the word *"Windows"* and *"Linux"* in attribute *descricao*
+
+```
+GET produto/_search
+{
+  "query": {
+    "match": {
+      "descricao": {
+        "query": "Windows Linux",
+        "operator": "and"
+      }
+    }
+  }
+}
+```
+
+Search for documents that has the word *"Windows"*, *"Linux"* or *"USB"* in attribute *descricao*
+
+```
+GET produto/_search
+{
+  "query": {
+    "match": {
+      "descricao": {
+        "query": "Windows Linux usb",
+        "minimum_should_match": 1
+      }
+    }
+  }
+}
+```
+
+---
+
+### Range Query
+
+Show documents with attribute *"Median Age"* greater than 70:
+
+```
+GET populacao/_search
+{
+  "query": {"range": {
+    "Median Age": {
+      "gt":70
+      }
+    }
+  }
+}
+```
+
+---
+### Query timestamp
+
+for this part, download index ["bolsa"](https://academy.semantix.com.br/courses/43/files/1874/download)
+
+visualize in index *bolsa* documents with date greater than 2019-01-01 and less than 2019-03-01
+
+```
+GET bolsa/_search
+{
+  "query":{
+    "range": {
+      "@timestamp": {
+        "gt": "2019-01-01",
+        "lt": "2019-04-01"
+      }
+    }
+  }
+}
+```
+Visualize in index *bolsa* documents with date greater than 2019-04-01 and less than today
+
+```
+GET bolsa/_search
+{
+  "query":{
+    "range": {
+      "@timestamp": {
+        "gt": "2019-01-01",
+        "lt": "now",
+        "time_zone":"+03:00"
+      }
+    }
+  }
+}
+```
+
