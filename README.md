@@ -1,4 +1,4 @@
-# Elastic_essencial_bacic
+# Elastic_essencial_basic
 Some basic commands on Elastic, CRUD operations, Index API, Search API, Queries and Filters, Analyzer and Aggregations. All information is provided by Semantix Academy.
 
 
@@ -345,4 +345,32 @@ GET bolsa/_search
   }
 }
 ```
+## Monitoring using Beats
+
+Monitoring logs in .logs file using file beat. For Ubuntu, download file beats using:
+
+```
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.1.2-linux-x86_64.tar.gz
+tar xzvf filebeat-8.1.2-linux-x86_64.tar.gz
+```
+
+You should download any .logs file to continue with this tutorial. Once downloaded, copy the path of the file to be moniroting. You can find the path uding ```pwd``` command.
+
+Now we must config the filebeat.yml file. You can do that using ```vi filebeat.yml```. 
+Once inside, in Filebeat.input, change the value of Enable to True and paste the path of the desired file to be monitorired.
+
+![input vi yml beat](https://user-images.githubusercontent.com/62483710/161452615-f35ace08-ca98-421a-8a2b-b2f844bf52c7.PNG)
+
+When finished editing, sae and quit, then test if filebeat is ok, inside *filebeat-8.1.2-linux-x86_64* directory run the command ´´´ ./filebeat test config´´´.
+
+Config OK is returned is case os success.
+
+to test for connection, run ``` ./filebeat test output```
+
+![output](https://user-images.githubusercontent.com/62483710/161452844-9bdfdee0-077b-43f9-9a1a-5cf220d17099.PNG)
+
+ to run filbeat: ``` sudo ./filebeat -e```.
+ 
+ 
+
 
