@@ -350,18 +350,18 @@ GET bolsa/_search
 Monitoring logs in .logs file using file beat. For Ubuntu, download file beats using:
 
 ```
-curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.1.2-linux-x86_64.tar.gz
-tar xzvf filebeat-8.1.2-linux-x86_64.tar.gz
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.2.1-linux-x86_64.tar.gz
+tar xzvf filebeat-7.2.1-linux-x86_64.tar.gz
 ```
 
-You should download any .logs file to continue with this tutorial. Once downloaded, copy the path of the file to be moniroting. You can find the path uding ```pwd``` command.
+You some any .logs files to proceed with this tutorial. Once downloaded, copy the file' pah to be moniroting. You can find the path using ```pwd``` command.
 
 Now we must config the filebeat.yml file. You can do that using ```vi filebeat.yml```. 
 Once inside, in Filebeat.input, change the value of Enable to True and paste the path of the desired file to be monitorired.
 
 ![input vi yml beat](https://user-images.githubusercontent.com/62483710/161452615-f35ace08-ca98-421a-8a2b-b2f844bf52c7.PNG)
 
-When finished editing, sae and quit, then test if filebeat is ok, inside *filebeat-8.1.2-linux-x86_64* directory run the command ´´´ ./filebeat test config´´´.
+When finished editing, save and quit , then test if filebeat is ok, inside *filebeat-8.1.2-linux-x86_64* directory run the command  ```./filebeat test config```.
 
 Config OK is returned is case os success.
 
