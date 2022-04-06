@@ -369,7 +369,11 @@ to test for connection, run ``` ./filebeat test output```
 
 ![output](https://user-images.githubusercontent.com/62483710/161452844-9bdfdee0-077b-43f9-9a1a-5cf220d17099.PNG)
 
- to run filbeat: ``` sudo ./filebeat -e```.
+ to setup filbeat: ``` ./filebeat setup -e```.
+ 
+ to run ``` ./filebeat -e``` 
+ 
+ 
  
  
 
