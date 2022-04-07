@@ -399,6 +399,21 @@ The default metricsets for docker module are: container, cpu, diskio, healthchec
 
  Start metricbeat ```./metricbeat -e ```
  
+ To search for permission denied in the metric, we will use Kibana on localhost:5600.
+ On Devtools, using the query:
  
+ ```
+ GET metricbeat-7.9.2/_search
+{
+  "query": {
+    "match": {
+      "error.message": "permission denied"
+    }
+  }
+}
+ ```
+The output:
+![permissiondenied](https://user-images.githubusercontent.com/62483710/162301202-a0b28411-679b-4574-8601-5d5cf4877c8b.PNG)
+
 
 
