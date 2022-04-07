@@ -347,7 +347,9 @@ GET bolsa/_search
 ```
 ## Monitoring using Beats
 
-Monitoring logs in .logs file using file beat. For Ubuntu, download file beats using:
+### Monitoring logs using file beat. 
+
+For Ubuntu, download file beats using:
 
 ```
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.2.1-linux-x86_64.tar.gz
@@ -373,7 +375,29 @@ to test for connection, run ``` ./filebeat test output```
  
  to run ``` ./filebeat -e``` 
  
+ ## Monitoring docker metrics using Metricbeat
  
+ First download metricbeat and unzip it.
+ 
+ ```
+ curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.9.2-linux-x86_64.tar.gz
+tar xzvf metricbeat-7.9.2-linux-x86_64.tar.gz
+```
+
+Enter Metricbeat folder then check for docker module using ``` ./metricbeat modules list```
+
+To enable docker module: ``` ./metricbeat modules enable docker```
+
+The default metricsets for docker module are: container, cpu, diskio, healthcheck, info, memory and network.
+ 
+ Get the docker's sock path. ```find / -name docker.sock```
+ 
+ Edit  ```vi docker.yml``` , you can choose which metric to monitor. Add the sock path to host and set enable to true, as follow
+ 
+
+![dockeryml](https://user-images.githubusercontent.com/62483710/162295694-99262356-9601-4aea-b7cf-4c73fbfe700b.PNG)
+
+ Start metricbeat ```./metricbeat -e ```
  
  
 
