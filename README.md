@@ -81,17 +81,22 @@ Change data type of attribute "qtd", from Long to Short. This will be done with 
 
  1- Get mapping from original index:
  
- ```GET produto/_mapping```
+ ```
+ GET produto/_mapping
+ ```
  
  2- from the output, get properties and copy the information
  
  3- Create new Index:
  
- ```GET produto/_mapping```
+ ```
+ GET produto/_mapping
+ ```
  
  4- Define mapping of nex index and paste properties from original index, changing data type from "qtd" to Short
  
- ```PUT produto2/_mapping
+ ```
+ PUT produto2/_mapping
 {
   "properties": {
     "data": {
